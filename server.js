@@ -1,6 +1,5 @@
 // Packages
 const express = require('express');
-const Joi = require('joi');
 
 // App config
 const app = express();
