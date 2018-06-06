@@ -1,9 +1,13 @@
-// Packages
 const express = require('express');
 
-// App config
-const app = express();
-const port = process.env.PORT || 3000;
+// Routes
+const genres = require('./routes/genres');
 
-// Start server
+const app = express();
+
+app.use(express.json());
+
+app.use('/api/genres', genres);
+
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server listening on port ${port}...`));

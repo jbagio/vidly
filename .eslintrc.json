@@ -5,6 +5,8 @@
         "node": true
     },
     "rules": {
-        "no-console": 0
+        "no-console": 0,
+        "comma-dangle": "off",
+        "space-before-function-paren": [2, "always"]
     }
 }
