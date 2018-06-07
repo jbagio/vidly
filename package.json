@@ -9,10 +9,12 @@
   "author": "João Bagio",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "express": "^4.16.3",
     "fawn": "^2.1.5",
     "joi": "^13.4.0",
     "joi-objectid": "^2.0.0",
+    "lodash": "^4.17.10",
     "mongoose": "^5.1.4"
   },
   "devDependencies": {
