@@ -38,7 +38,7 @@ function validateMovie (movie) {
     title: Joi.string().min(3).max(255).required(),
     // although a whole genre document is stored,
     // only the genre id is received via the api
-    genreId: Joi.string().required(),
+    genreId: Joi.objectId().required(),
     numberInStock: Joi.number().min(0).required(),
     dailyRentalRate: Joi.number().min(0).required()
   };

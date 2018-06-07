@@ -31,13 +31,13 @@ router.post('/', async (req, res) => {
     return res.status('400').send(error.details[0].message);
   }
 
-  let customer = new Customer({
+  const customer = new Customer({
     name: req.body.name,
     phone: req.body.phone,
     isGold: req.body.isGold
   });
-  // get saved obj
-  customer = await customer.save();
+
+  await customer.save();
 
   return res.send(customer);
 });

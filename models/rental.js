@@ -65,8 +65,8 @@ const Rental = mongoose.model('Rental', rentalSchema);
 function validateRental (rental) {
   const schema = {
     // only customer id and movie id are sent to the api
-    customerId: Joi.string().required(),
-    movieId: Joi.string().required()
+    customerId: Joi.objectId().required(),
+    movieId: Joi.objectId().required()
   };
 
   return Joi.validate(rental, schema);
