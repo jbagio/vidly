@@ -8,6 +8,7 @@
         "no-console": 0,
         "comma-dangle": "off",
         "space-before-function-paren": [2, "always"],
-        "no-underscore-dangle": [2, { "allow": ["_id"] }]
+        "no-underscore-dangle": [2, { "allow": ["_id"] }],
+        "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
     }
 }
