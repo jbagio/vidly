@@ -22,14 +22,21 @@ const userSchema = new mongoose.Schema({
     minlength: 10,
     maxlength: 1024,
     required: true
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
   }
 });
 
 /**
- * Generate JSON web token
+ * Generate JSON web token with user payload
  */
 userSchema.methods.generateAuthToken = function () {
-  return jwt.sign({ _id: this._id }, config.get('jwtSecret'));
+  return jwt.sign({
+    _id: this._id,
+    isAdmin: this.isAdmin
+  }, config.get('jwtSecret'));
 };
 
 const User = mongoose.model('User', userSchema);

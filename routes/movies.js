@@ -1,6 +1,6 @@
 const { Movie, validate } = require('../models/movie');
 const { Genre } = require('../models/genre');
-const ensureAuth = require('../middleware/auth');
+const { ensureAuth, ensureAdmin } = require('../middleware/auth');
 const express = require('express');
 
 const router = express.Router();
@@ -89,7 +89,7 @@ router.put('/:id', ensureAuth, async (req, res) => {
 /**
  * DELETE
  */
-router.delete('/:id', ensureAuth, async (req, res) => {
+router.delete('/:id', [ensureAuth, ensureAdmin], async (req, res) => {
   // get deleted obj
   const movie = await Movie.findByIdAndRemove(req.params.id);
   if (!movie) {

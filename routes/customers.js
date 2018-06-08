@@ -1,5 +1,5 @@
 const { Customer, validate } = require('../models/customer');
-const ensureAuth = require('../middleware/auth');
+const { ensureAuth, ensureAdmin } = require('../middleware/auth');
 const express = require('express');
 
 const router = express.Router();
@@ -70,7 +70,7 @@ router.put('/:id', ensureAuth, async (req, res) => {
 /**
  * DELETE
  */
-router.delete('/:id', ensureAuth, async (req, res) => {
+router.delete('/:id', [ensureAuth, ensureAdmin], async (req, res) => {
   // get deleted obj
   const customer = await Customer.findByIdAndRemove(req.params.id);
   if (!customer) {
