@@ -11,7 +11,9 @@
 *.sass-cache
 node_modules/
 .tmp/
-.tern-project
+
+# dotenv file
+.env
 
 # OS or Editor folders
 .DS_Store

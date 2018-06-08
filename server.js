@@ -1,7 +1,9 @@
+require('dotenv').load();
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const express = require('express');
 const mongoose = require('mongoose');
+const config = require('config');
 
 // Routes
 const genres = require('./routes/genres');
@@ -12,6 +14,12 @@ const users = require('./routes/users');
 const auth = require('./routes/auth');
 
 const app = express();
+
+// Terminate if no JSON web token secret found
+if (!config.get('jwtSecret')) {
+  console.log('ERROR: jwtSecret not defined.');
+  process.exit(1);
+}
 
 const databaseUri = process.env.DATABASE_URI || 'mongodb://localhost/vidlydb';
 mongoose.connect(databaseUri)

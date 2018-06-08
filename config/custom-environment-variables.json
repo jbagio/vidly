@@ -1,0 +1,3 @@
+{
+  "jwtSecret" : "VIDLY_JWT_SECRET"
+}

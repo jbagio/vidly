@@ -29,17 +29,17 @@ router.post('/', async (req, res) => {
 
   const user = await User.findOne({ email: req.body.email });
   if (!user) {
-    console.log('email not found');
     return res.status('400').send('Invalid email or password.');
   }
 
   const isValid = await bcrypt.compare(req.body.password, user.password);
-  console.log(isValid);
   if (!isValid) {
     return res.status('400').send('Invalid email or password.');
   }
 
-  return res.send(true);
+  // send JSON in the response
+  const token = user.generateAuthToken();
+  return res.send(token);
 });
 
 module.exports = router;

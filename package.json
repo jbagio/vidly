@@ -10,10 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^2.0.1",
+    "config": "^1.30.0",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "fawn": "^2.1.5",
     "joi": "^13.4.0",
     "joi-objectid": "^2.0.0",
+    "jsonwebtoken": "^8.2.2",
     "lodash": "^4.17.10",
     "mongoose": "^5.1.4"
   },
