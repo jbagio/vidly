@@ -1,3 +1,4 @@
 {
-  "jwtSecret" : ""
+  "jwtSecret" : "",
+  "databaseUri": "mongodb://localhost/vidlydb"
 }

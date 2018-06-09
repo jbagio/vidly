@@ -1,3 +1,4 @@
 {
-  "jwtSecret" : "VIDLY_JWT_SECRET"
+  "jwtSecret" : "VIDLY_JWT_SECRET",
+  "databaseUri": "VIDLY_DATABASE_URI"
 }
