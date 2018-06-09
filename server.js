@@ -5,6 +5,8 @@ Joi.objectId = require('joi-objectid')(Joi);
 const express = require('express');
 const mongoose = require('mongoose');
 const config = require('config');
+const winston = require('winston');
+require('winston-mongodb');
 
 const genres = require('./routes/genres');
 const customers = require('./routes/customers');
@@ -16,14 +18,28 @@ const auth = require('./routes/auth');
 const error = require('./middleware/error');
 
 const app = express();
+const databaseUri = process.env.DATABASE_URI || 'mongodb://localhost/vidlydb';
+
+winston.add(winston.transports.File, { filename: 'vidly_logfile.log' });
+winston.add(winston.transports.MongoDB, {
+  db: databaseUri,
+  level: 'error'
+});
+
+// Handle exceptions thrown outside of the request processing pipeline and terminate
+winston.handleExceptions(new winston.transports.File({ filename: 'vidly_uncaughtExceptions.log' }));
+
+// Throw unhandled rejections ensuring they're caught by winston
+process.on('unhandledRejection', (ex) => {
+  throw ex;
+});
 
 // Terminate if no JSON web token secret found
 if (!config.get('jwtSecret')) {
-  console.log('ERROR: jwtSecret not defined.');
+  console.log('FATAL ERROR: jwtSecret not defined.');
   process.exit(1);
 }
 
-const databaseUri = process.env.DATABASE_URI || 'mongodb://localhost/vidlydb';
 mongoose.connect(databaseUri)
   .then(() => console.log('Connected to DB...'))
   .catch(err => console.error('Could not connect to DB...', err));
