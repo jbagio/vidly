@@ -15,7 +15,10 @@ module.exports = function () {
   });
 
   // Handle exceptions thrown outside of the request processing pipeline and terminate
-  winston.handleExceptions(new winston.transports.File({ filename: 'vidly_uncaughtExceptions.log' }));
+  winston.handleExceptions(
+    new winston.transports.Console({ colorize: true, prettyPrint: true }),
+    new winston.transports.File({ filename: 'vidly_uncaughtExceptions.log' })
+  );
 
   // Throw unhandled rejections ensuring they're caught by winston
   process.on('unhandledRejection', (ex) => {
