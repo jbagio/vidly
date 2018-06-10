@@ -1,9 +1,11 @@
 {
-    "extends": "airbnb-base",
+    "extends": ["airbnb-base", "plugin:jest/recommended"],
     "env": {
         "es6": true,
-        "node": true
+        "node": true,
+        "jest": true
     },
+    "plugins": ["jest"],
     "rules": {
         "no-console": 0,
         "comma-dangle": "off",

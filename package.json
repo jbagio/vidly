@@ -4,7 +4,7 @@
   "description": "Demo RESTful API for a movie rental service",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll"
   },
   "author": "João Bagio",
   "license": "ISC",
@@ -26,6 +26,8 @@
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.12.0"
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jest": "^21.17.0",
+    "jest": "^23.1.0"
   }
 }
