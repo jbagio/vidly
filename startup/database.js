@@ -6,6 +6,7 @@ const config = require('config');
  * Setup database connection
  */
 module.exports = function () {
-  mongoose.connect(config.get('databaseUri'))
-    .then(() => winston.info('Connected to DB...'));
+  const databaseUri = config.get('databaseUri');
+  mongoose.connect(databaseUri)
+    .then(() => winston.info(`Connected to ${databaseUri}...`));
 };
