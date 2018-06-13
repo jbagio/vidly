@@ -44,7 +44,7 @@ router.post('/', ensureAuth, async (req, res) => {
 /**
  * PUT
  */
-router.put('/:id', ensureAuth, async (req, res) => {
+router.put('/:id', ensureAuth, validateObjectId, async (req, res) => {
   const { error } = validate(req.body);
   if (error) {
     return res.status('400').send(error.details[0].message);
@@ -64,7 +64,7 @@ router.put('/:id', ensureAuth, async (req, res) => {
 /**
  * DELETE
  */
-router.delete('/:id', [ensureAuth, ensureAdmin], async (req, res) => {
+router.delete('/:id', [ensureAuth, ensureAdmin, validateObjectId], async (req, res) => {
   // get deleted obj
   const genre = await Genre.findByIdAndRemove(req.params.id);
   if (!genre) {

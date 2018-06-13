@@ -15,6 +15,9 @@ node_modules/
 # dotenv file
 .env
 
+# tests coverage folder
+/coverage
+
 # OS or Editor folders
 .DS_Store
 Thumbs.db
