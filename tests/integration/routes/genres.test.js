@@ -1,5 +1,5 @@
-const { Genre } = require('../../models/genre');
-const { User } = require('../../models/user');
+const { Genre } = require('../../../models/genre');
+const { User } = require('../../../models/user');
 const request = require('supertest');
 
 let server;
@@ -7,7 +7,7 @@ describe('/api/genres', () => {
   // Load server before / close after test
   beforeEach(() => {
     /* eslint-disable global-require */
-    server = require('../../server');
+    server = require('../../../server');
   });
   afterEach(async () => {
     server.close();
@@ -27,6 +27,7 @@ describe('/api/genres', () => {
 
       const response = await request(server).get('/api/genres');
       expect(response.status).toBe(200);
+      expect(response.body).toHaveLength(2);
       expect(response.body.some(genre => genre.name === 'genre1')).toBeTruthy();
       expect(response.body.some(genre => genre.name === 'genre2')).toBeTruthy();
     });
@@ -66,7 +67,7 @@ describe('/api/genres', () => {
       name = 'genre1';
     });
 
-    const execRequest = async () =>
+    const execRequest = () =>
       request(server)
         .post('/api/genres')
         .set('x-auth-token', token)
@@ -99,7 +100,7 @@ describe('/api/genres', () => {
       expect(response.status).not.toBe(null);
     });
 
-    it('should return the genre if saved', async () => {
+    it('should return the genre if saved successfully', async () => {
       const response = await execRequest();
 
       expect(response.body).toHaveProperty('_id');
