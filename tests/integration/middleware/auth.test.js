@@ -14,7 +14,7 @@ describe('auth middleware functions', () => {
   afterEach(async () => {
     // Delete all test data
     await Genre.remove({});
-    server.close();
+    await server.close();
   });
 
   describe('ensureAuth', () => {

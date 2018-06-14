@@ -3,15 +3,15 @@ const { User } = require('../../../models/user');
 const request = require('supertest');
 const mongoose = require('mongoose');
 
-let server;
 describe('/api/genres', () => {
+  let server;
   // Load server before / close after test
   beforeEach(() => {
     /* eslint-disable global-require */
     server = require('../../../server');
   });
   afterEach(async () => {
-    server.close();
+    await server.close();
     // Delete all test data
     await Genre.remove({});
   });
