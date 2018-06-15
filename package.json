@@ -4,7 +4,7 @@
   "description": "Demo RESTful API for a movie rental service",
   "main": "server.js",
   "scripts": {
-    "test": "jest --watchAll --verbose --coverage"
+    "test": "jest --watchAll --verbose"
   },
   "author": "João Bagio",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.2.2",
     "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "mongoose": "^5.1.4",
     "winston": "^2.4.2",
     "winston-mongodb": "^3.0.0"
