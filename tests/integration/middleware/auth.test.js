@@ -5,20 +5,20 @@ const request = require('supertest');
 let server;
 let token;
 describe('auth middleware functions', () => {
-  // Load server before / close after test
+  // Before each test, load server and generate valid token
   beforeEach(() => {
     /* eslint-disable global-require */
     server = require('../../../server');
     token = new User().generateAuthToken();
   });
+  // After each test, close server and delete all test db data
   afterEach(async () => {
-    // Delete all test data
-    await Genre.remove({});
     await server.close();
+    await Genre.remove({});
   });
 
   describe('ensureAuth', () => {
-    // Send a valid post request to an endpoint that requires authorization
+    // Happy path
     const execRequest = async () =>
       request(server)
         .post('/api/genres')

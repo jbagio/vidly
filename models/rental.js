@@ -1,5 +1,6 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const rentalSchema = new mongoose.Schema({
   // Custom customer and movie schemas to persist only the absolute essential
@@ -56,6 +57,17 @@ const rentalSchema = new mongoose.Schema({
     min: 0
   }
 });
+
+/**
+ * Process a rental return
+ */
+rentalSchema.methods.return = function () {
+  this.dateReturn = new Date();
+
+  const rentalDays = moment().diff(this.dateRental, 'days');
+  this.rentalFee = rentalDays * this.movie.dailyRentalRate;
+};
+
 
 const Rental = mongoose.model('Rental', rentalSchema);
 

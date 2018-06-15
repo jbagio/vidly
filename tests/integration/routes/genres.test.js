@@ -5,14 +5,14 @@ const mongoose = require('mongoose');
 
 describe('/api/genres', () => {
   let server;
-  // Load server before / close after test
+  // Before each test, load server
   beforeEach(() => {
     /* eslint-disable global-require */
     server = require('../../../server');
   });
+  // After each test, close server and delete all test db data
   afterEach(async () => {
     await server.close();
-    // Delete all test data
     await Genre.remove({});
   });
 

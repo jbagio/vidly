@@ -24,7 +24,8 @@ describe('/api/returns', () => {
     let movie;
     let rental;
     let token;
-
+    // Before each test, load server, generate valid token
+    // and create the necessary test db data
     beforeEach(async () => {
       /* eslint-disable global-require */
       server = require('../../../server');
@@ -34,7 +35,6 @@ describe('/api/returns', () => {
       customerId = mongoose.Types.ObjectId();
       movieId = mongoose.Types.ObjectId();
 
-      // Movie test obj
       movie = new Movie({
         _id: movieId,
         title: 'abc',
@@ -59,13 +59,11 @@ describe('/api/returns', () => {
       });
       await rental.save();
     });
-
+    // After each test, close server and delete all test db data
     afterEach(async () => {
-      // Delete all test data
+      await server.close();
       await Rental.remove({});
       await Movie.remove({});
-
-      await server.close();
     });
 
     // Happy path
