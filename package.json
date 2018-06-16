@@ -4,7 +4,7 @@
   "description": "Demo RESTful API for a movie rental service",
   "main": "server.js",
   "scripts": {
-    "test": "jest --watchAll --verbose"
+    "test": "jest --runInBand --watchAll --verbose --coverage"
   },
   "author": "João Bagio",
   "license": "ISC",

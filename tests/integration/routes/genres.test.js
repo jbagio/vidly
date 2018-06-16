@@ -97,7 +97,7 @@ describe('/api/genres', () => {
       expect(response.status).toBe(400);
     });
 
-    it('should return 400 if genre name is greather than 100 characters', async () => {
+    it('should return 400 if genre name is greater than 100 characters', async () => {
       name = new Array(102).join('a');
       const response = await execRequest();
 

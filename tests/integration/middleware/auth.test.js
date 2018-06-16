@@ -19,7 +19,7 @@ describe('auth middleware functions', () => {
 
   describe('ensureAuth', () => {
     // Happy path
-    const execRequest = async () =>
+    const execRequest = () =>
       request(server)
         .post('/api/genres')
         .set('x-auth-token', token)
